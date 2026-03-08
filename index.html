@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday BBG 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Grid Pattern Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 192, 203, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 192, 203, 0.15) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Screen Styles */
+        .screen {
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Cat Image Styles */
+        .cat-image {
+            font-size: 140px;
+            animation: bounce 2s infinite;
+            margin-bottom: 20px;
+        }
+
+        .cat-image.angry {
+            animation: shake 0.5s infinite;
+        }
+
+        .cat-image.happy {
+            animation: bounce 2s infinite;
+        }
+
+        .cat-image.party {
+            font-size: 150px;
+            animation: spin 3s infinite linear;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0) rotateZ(0deg);
+            }
+            25% {
+                transform: translateX(-10px) rotateZ(-5deg);
+            }
+            75% {
+                transform: translateX(10px) rotateZ(5deg);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Text Styles */
+        .screen h1 {
+            font-size: 32px;
+            color: #ff69b4;
+            font-weight: 700;
+            margin: 20px 0;
+            letter-spacing: 1px;
+        }
+
+        .screen h2 {
+            font-size: 28px;
+            color: #ff1493;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+
+        .screen p {
+            font-size: 18px;
+            color: #d946a6;
+            line-height: 1.6;
+            margin: 15px 0;
+            max-width: 500px;
+        }
+
+        .screen .subtitle {
+            font-size: 22px;
+            color: #ff69b4;
+            font-weight: 600;
+        }
+
+        /* Button Styles */
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .btn-yes:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #ffc0cb 0%, #ffb6d9 100%);
+            color: #d946a6;
+        }
+
+        .btn-no:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 192, 203, 0.5);
+        }
+
+        .btn-no:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-click {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            padding: 15px 50px;
+            font-size: 20px;
+        }
+
+        .btn-click:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+        }
+
+        .btn-click:active {
+            transform: scale(0.98);
+        }
+
+        /* Confetti Animation */
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotateZ(360deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Final Message Styling */
+        .birthday-message {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.2);
+        }
+
+        .birthday-message h1 {
+            font-size: 36px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .birthday-message p {
+            font-size: 20px;
+            color: #d946a6;
+            line-height: 1.8;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .screen h1 {
+                font-size: 28px;
+            }
+
+            .screen h2 {
+                font-size: 24px;
+            }
+
+            .screen p {
+                font-size: 16px;
+            }
+
+            .cat-image {
+                font-size: 100px;
+            }
+
+            .cat-image.party {
+                font-size: 120px;
+            }
+
+            button {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+
+            .button-group {
+                gap: 15px;
+            }
+
+            .birthday-message {
+                padding: 30px;
+            }
+
+            .birthday-message h1 {
+                font-size: 28px;
+            }
+
+            .birthday-message p {
+                font-size: 18px;
+            }
+
+            body::before {
+                background-size: 35px 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Screen 1: Initial Greeting -->
+        <div id="screen1" class="screen active">
+            <div class="cat-image happy">😸</div>
+            <h1>HEY!!</h1>
+            <p>I made something for you.<br>Do you want to see?</p>
+            <div class="button-group">
+                <button class="btn-yes" onclick="showNo()">No</button>
+                <button class="btn-yes" onclick="showYes()">Yes</button>
+            </div>
+        </div>
+
+        <!-- Screen 2: Angry Cat (if user clicks No) -->
+        <div id="screen2" class="screen">
+            <div class="cat-image angry">😾</div>
+            <h2>HOW DARE YOU</h2>
+            <button class="btn-yes" onclick="goBack()">I'm Sorry! Let me see...</button>
+        </div>
+
+        <!-- Screen 3: Happy Cat (if user clicks Yes) -->
+        <div id="screen3" class="screen">
+            <div class="cat-image happy">😻</div>
+            <div class="subtitle">That's a good girl!!</div>
+            <p>One more thing... 👀</p>
+            <button class="btn-click" onclick="showBirthday()">Click</button>
+        </div>
+
+        <!-- Screen 4: Final Birthday Page -->
+        <div id="screen4" class="screen">
+            <div class="cat-image party">😸🎉</div>
+            <div class="birthday-message">
+                <h1>HAPPY BIRTHDAY BBG ❤️</h1>
+                <p>You are my favorite notification.</p>
+                <p>Stay cute, stay happy, stay mine.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Screen Navigation Functions
+        function hideAllScreens() {
+            document.getElementById('screen1').classList.remove('active');
+            document.getElementById('screen2').classList.remove('active');
+            document.getElementById('screen3').classList.remove('active');
+            document.getElementById('screen4').classList.remove('active');
+        }
+
+        function showScreen(screenId) {
+            hideAllScreens();
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function showNo() {
+            showScreen('screen2');
+        }
+
+        function showYes() {
+            showScreen('screen3');
+        }
+
+        function goBack() {
+            showScreen('screen1');
+        }
+
+        function showBirthday() {
+            showScreen('screen4');
+            createConfetti();
+        }
+
+        // Confetti Animation
+        function createConfetti() {
+            const colors = ['#ff69b4', '#ff1493', '#ffc0cb', '#ffb6d9', '#ff69b4'];
+            const confettiPieces = 50;
+
+            for (let i = 0; i < confettiPieces; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `fall ${2 + Math.random() * 1}s linear`;
+                confetti.style.animationDelay = Math.random() * 0.3 + 's';
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 3500);
+            }
+        }
+
+        // Keyboard Navigation (optional)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const activeScreen = document.querySelector('.screen.active').id;
+                if (activeScreen === 'screen1') {
+                    showYes();
+                } else if (activeScreen === 'screen3') {
+                    showBirthday();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
