@@ -1,274 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Himabindhu 🎉</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, #fff5e6 0%, #ffe6f0 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
+<title>Happy Birthday Himabindhu 🎉</title>
 
-        /* Grid Pattern Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(255, 192, 203, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 192, 203, 0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none;
-            z-index: -1;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
-        .screen {
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            position: absolute;
-        }
+<style>
 
-        .screen.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        .screen.fade-out {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
+body{
+font-family:'Quicksand',sans-serif;
+background:linear-gradient(135deg,#fff5e6,#ffe6f0);
+min-height:100vh;
+overflow:hidden;
+}
 
-        .cat {
-            font-size: 5rem;
-            margin-bottom: 20px;
-        }
+/* grid background */
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(rgba(255,192,203,0.15) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,192,203,0.15) 1px,transparent 1px);
+background-size:40px 40px;
+z-index:-1;
+}
 
-        .bounce {
-            animation: bounce 2s infinite;
-        }
+/* screens */
 
-        .shake {
-            animation: shake 0.5s infinite;
-        }
+.screen{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(.95);
+opacity:0;
+transition:.5s;
+text-align:center;
+max-width:600px;
+width:90%;
+}
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
+.screen.active{
+opacity:1;
+transform:translate(-50%,-50%) scale(1);
+}
 
-        @keyframes shake {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            10%, 30%, 50%, 70%, 90% {
-                transform: translateX(-5px);
-            }
-            20%, 40%, 60%, 80% {
-                transform: translateX(5px);
-            }
-        }
+/* cat */
 
-        h1, p {
-            color: #ff69b4;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+.cat{
+font-size:80px;
+margin-bottom:20px;
+}
 
-        h1 {
-            font-size: 2rem;
-        }
+/* animations */
 
-        p {
-            font-size: 1.2rem;
-        }
+.bounce{
+animation:bounce 2s infinite;
+}
 
-        .buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+.shake{
+animation:shake .5s infinite;
+}
 
-        button {
-            background: linear-gradient(135deg, #ff69b4, #ffb6c1);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
-        }
+@keyframes bounce{
+0%,20%,50%,80%,100%{transform:translateY(0)}
+40%{transform:translateY(-15px)}
+60%{transform:translateY(-8px)}
+}
 
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(255, 105, 180, 0.4);
-        }
+@keyframes shake{
+0%,100%{transform:translateX(0)}
+25%{transform:translateX(-5px)}
+50%{transform:translateX(5px)}
+75%{transform:translateX(-5px)}
+}
 
-        button:active {
-            transform: translateY(0);
-        }
+/* text */
 
-        #noBtn:hover {
-            transform: translateX(50px) translateY(-2px);
-        }
+h1{
+color:#ff69b4;
+margin-bottom:20px;
+}
 
-        .confetti {
-            position: absolute;
-            font-size: 2rem;
-            animation: fall 3s linear infinite;
-            pointer-events: none;
-        }
+p{
+color:#ff69b4;
+font-size:18px;
+margin-bottom:20px;
+}
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
+/* buttons */
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-            p {
-                font-size: 1rem;
-            }
-            button {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-            .buttons {
-                gap: 15px;
-            }
-            .cat {
-                font-size: 4rem;
-            }
-        }
-    </style>
+.buttons{
+display:flex;
+gap:20px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+button{
+background:linear-gradient(135deg,#ff69b4,#ffb6c1);
+color:white;
+border:none;
+padding:12px 28px;
+border-radius:50px;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 5px 12px rgba(255,105,180,.3);
+}
+
+button:hover{
+transform:translateY(-3px);
+}
+
+/* funny no button */
+
+#noBtn:hover{
+transform:translateX(60px);
+}
+
+/* confetti */
+
+.confetti{
+position:absolute;
+font-size:25px;
+animation:fall 3s linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100vh) rotate(0);
+opacity:1;
+}
+100%{
+transform:translateY(100vh) rotate(360deg);
+opacity:0;
+}
+}
+
+</style>
 </head>
+
 <body>
-    <!-- Screen 1 -->
-    <div id="screen1" class="screen active">
-        <div class="cat">🐱</div>
-        <h1>Himabindhu, I made something special for you ❤️<br>Do you want to see it?</h1>
-        <div class="buttons">
-            <button id="yesBtn">Yes</button>
-            <button id="noBtn">No</button>
-        </div>
-    </div>
 
-    <!-- Screen 2 -->
-    <div id="screen2" class="screen">
-        <div class="cat bounce">😸</div>
-        <h1>That's a good choice Himabindhu 😊</h1>
-        <button id="surpriseBtn">Click for your surprise</button>
-    </div>
+<!-- SCREEN 1 -->
 
-    <!-- Screen 3 -->
-    <div id="screen3" class="screen">
-        <div class="cat shake">😾</div>
-        <h1>Himabindhu! How dare you say NO 😾</h1>
-        <button id="sorryBtn">Okay fine I'll click Yes</button>
-    </div>
+<div id="screen1" class="screen active">
 
-    <!-- Screen 4 -->
-    <div id="screen4" class="screen">
-        <div class="cat">🐱🎂</div>
-        <h1>🎉 Happy Birthday Himabindhu 🎉</h1>
-        <p>Wishing you a day full of smiles, laughter and happiness.<br>You deserve the best birthday ever!</p>
-    </div>
+<div class="cat">🐱</div>
 
-    <script>
-        const screens = {
-            screen1: document.getElementById('screen1'),
-            screen2: document.getElementById('screen2'),
-            screen3: document.getElementById('screen3'),
-            screen4: document.getElementById('screen4')
-        };
+<h1>
+Himabindhu, I made something special for you ❤️
+<br>
+Do you want to see it?
+</h1>
 
-        function showScreen(screenId) {
-            // Hide all screens
-            Object.values(screens).forEach(screen => {
-                screen.classList.remove('active');
-            });
-            // Show the selected screen
-            screens[screenId].classList.add('active');
-            // If final screen, create confetti
-            if (screenId === 'screen4') {
-                createConfetti();
-            }
-        }
+<div class="buttons">
+<button id="yesBtn">Yes</button>
+<button id="noBtn">No</button>
+</div>
 
-        function createConfetti() {
-            const emojis = ['🎉', '🎂', '❤️', '🌟', '✨'];
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.animationDelay = Math.random() * 3 + 's';
-                document.body.appendChild(confetti);
-                setTimeout(() => {
-                    document.body.removeChild(confetti);
-                }, 3000);
-            }
-        }
+</div>
 
-        document.getElementById('yesBtn').addEventListener('click', () => {
-            showScreen('screen2');
-        });
 
-        document.getElementById('noBtn').addEventListener('click', () => {
-            showScreen('screen3');
-        });
+<!-- SCREEN 2 -->
 
-        document.getElementById('surpriseBtn').addEventListener('click', () => {
-            showScreen('screen4');
-        });
+<div id="screen2" class="screen">
 
-        document.getElementById('sorryBtn').addEventListener('click', () => {
-            showScreen('screen2');
-        });
-    </script>
+<div class="cat bounce">😸</div>
+
+<h1>That's a good choice Himabindhu 😊</h1>
+
+<button id="surpriseBtn">Click for your surprise</button>
+
+</div>
+
+
+<!-- SCREEN 3 -->
+
+<div id="screen3" class="screen">
+
+<div class="cat shake">😾</div>
+
+<h1>Himabindhu! How dare you say NO 😾</h1>
+
+<button id="sorryBtn">Okay fine I'll click Yes</button>
+
+</div>
+
+
+<!-- SCREEN 4 -->
+
+<div id="screen4" class="screen">
+
+<div class="cat">🐱🎂</div>
+
+<h1>🎉 Happy Birthday Himabindhu 🎉</h1>
+
+<p>
+Wishing you a day full of smiles, laughter and happiness.
+<br>
+You deserve the best birthday ever!
+</p>
+
+</div>
+
+
+<script>
+
+const screens={
+screen1:document.getElementById("screen1"),
+screen2:document.getElementById("screen2"),
+screen3:document.getElementById("screen3"),
+screen4:document.getElementById("screen4")
+}
+
+function showScreen(id){
+
+Object.values(screens).forEach(screen=>{
+screen.classList.remove("active")
+})
+
+screens[id].classList.add("active")
+
+if(id==="screen4"){
+createConfetti()
+}
+
+}
+
+/* buttons */
+
+document.getElementById("yesBtn").onclick=()=>{
+showScreen("screen2")
+}
+
+document.getElementById("noBtn").onclick=()=>{
+showScreen("screen3")
+}
+
+document.getElementById("surpriseBtn").onclick=()=>{
+showScreen("screen4")
+}
+
+document.getElementById("sorryBtn").onclick=()=>{
+showScreen("screen2")
+}
+
+/* confetti */
+
+function createConfetti(){
+
+const emojis=["🎉","🎂","❤️","✨","🌟"]
+
+for(let i=0;i<40;i++){
+
+const c=document.createElement("div")
+
+c.className="confetti"
+
+c.textContent=emojis[Math.floor(Math.random()*emojis.length)]
+
+c.style.left=Math.random()*100+"vw"
+
+c.style.animationDelay=Math.random()*3+"s"
+
+document.body.appendChild(c)
+
+setTimeout(()=>{
+c.remove()
+},3000)
+
+}
+
+}
+
+</script>
+
 </body>
 </html>
