@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday BBG 🎉</title>
+    <title>Happy Birthday Himabindhu 🎉</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,7 +13,7 @@
         }
 
         body {
-            font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Quicksand', sans-serif;
             background: linear-gradient(135deg, #fff5e6 0%, #ffe6f0 100%);
             min-height: 100vh;
             display: flex;
@@ -30,23 +31,240 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 192, 203, 0.15) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 192, 203, 0.15) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background-image:
+                linear-gradient(rgba(255, 192, 203, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 192, 203, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
             pointer-events: none;
             z-index: -1;
         }
 
-        .container {
+        .screen {
             width: 100%;
             max-width: 600px;
             padding: 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            justify-content: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: absolute;
         }
+
+        .screen.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .screen.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .cat {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        .shake {
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-5px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(5px);
+            }
+        }
+
+        h1, p {
+            color: #ff69b4;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff69b4, #ffb6c1);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(255, 105, 180, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #noBtn:hover {
+            transform: translateX(50px) translateY(-2px);
+        }
+
+        .confetti {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall 3s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            .buttons {
+                gap: 15px;
+            }
+            .cat {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Screen 1 -->
+    <div id="screen1" class="screen active">
+        <div class="cat">🐱</div>
+        <h1>Himabindhu, I made something special for you ❤️<br>Do you want to see it?</h1>
+        <div class="buttons">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <!-- Screen No -->
+    <div id="screenNo" class="screen">
+        <div class="cat shake">😾</div>
+        <h1>Hey Himabindhu! How dare you say no 😾</h1>
+    </div>
+
+    <!-- Screen Yes -->
+    <div id="screenYes" class="screen">
+        <div class="cat bounce">😸</div>
+        <h1>That's a good choice PB 😊</h1>
+        <button id="clickBtn">Click for your surprise</button>
+    </div>
+
+    <!-- Screen Final -->
+    <div id="screenFinal" class="screen">
+        <div class="cat">🐱🎂</div>
+        <h1>🎉 Happy Birthday bindhu 🎉</h1>
+        <p>Wishing you a day full of smiles, laughter and happiness.<br>You deserve the best birthday ever!</p>
+    </div>
+
+    <script>
+        const screens = {
+            screen1: document.getElementById('screen1'),
+            screenNo: document.getElementById('screenNo'),
+            screenYes: document.getElementById('screenYes'),
+            screenFinal: document.getElementById('screenFinal')
+        };
+
+        function switchScreen(from, to) {
+            screens[from].classList.add('fade-out');
+            setTimeout(() => {
+                screens[from].classList.remove('active', 'fade-out');
+                screens[to].classList.add('active');
+                if (to === 'screenFinal') {
+                    createConfetti();
+                }
+            }, 500);
+        }
+
+        function createConfetti() {
+            const emojis = ['🎉', '🎂', '❤️', '🌟', '✨'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => {
+                    document.body.removeChild(confetti);
+                }, 3000);
+            }
+        }
+
+        document.getElementById('yesBtn').addEventListener('click', () => {
+            switchScreen('screen1', 'screenYes');
+        });
+
+        document.getElementById('noBtn').addEventListener('click', () => {
+            switchScreen('screen1', 'screenNo');
+        });
+
+        document.getElementById('clickBtn').addEventListener('click', () => {
+            switchScreen('screenYes', 'screenFinal');
+        });
+    </script>
+</body>
+</html>
 
         /* Screen Styles */
         .screen {
