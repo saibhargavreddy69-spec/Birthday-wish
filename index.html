@@ -1,289 +1,165 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Happy Birthday Himabindhu 🎉</title>
+<title>Birthday Surprise</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka:wght@600&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
 body{
-font-family:'Quicksand',sans-serif;
-background:linear-gradient(135deg,#fff5e6,#ffe6f0);
-min-height:100vh;
-overflow:hidden;
+font-family:Arial;
+background:#fff7f8;
+background-image:
+linear-gradient(#ffd6e0 1px, transparent 1px),
+linear-gradient(90deg,#ffd6e0 1px, transparent 1px);
+background-size:40px 40px;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
 }
 
-/* grid background */
-body::before{
-content:"";
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background-image:
-linear-gradient(rgba(255,192,203,0.15) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,192,203,0.15) 1px,transparent 1px);
-background-size:40px 40px;
-z-index:-1;
+.container{
+text-align:center;
+max-width:500px;
+}
+
+/* cat image */
+
+.cat{
+width:220px;
+margin-bottom:20px;
+}
+
+/* HEY text */
+
+.hey{
+font-family:'Fredoka',sans-serif;
+font-size:60px;
+color:#c43757;
+margin-bottom:10px;
+}
+
+/* message text */
+
+.line1{
+font-family:'Pacifico',cursive;
+font-size:28px;
+color:#333;
+}
+
+.line2{
+font-family:'Pacifico',cursive;
+font-size:32px;
+color:#444;
+margin-bottom:25px;
+}
+
+/* buttons */
+
+button{
+background:#c94a6a;
+color:white;
+border:none;
+padding:12px 30px;
+font-size:20px;
+border-radius:25px;
+margin:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#b03c59;
 }
 
 /* screens */
 
 .screen{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%) scale(.95);
-opacity:0;
-transition:.5s;
-text-align:center;
-max-width:600px;
-width:90%;
+display:none;
 }
 
-.screen.active{
-opacity:1;
-transform:translate(-50%,-50%) scale(1);
-}
-
-/* cat */
-
-.cat{
-font-size:80px;
-margin-bottom:20px;
-}
-
-/* animations */
-
-.bounce{
-animation:bounce 2s infinite;
-}
-
-.shake{
-animation:shake .5s infinite;
-}
-
-@keyframes bounce{
-0%,20%,50%,80%,100%{transform:translateY(0)}
-40%{transform:translateY(-15px)}
-60%{transform:translateY(-8px)}
-}
-
-@keyframes shake{
-0%,100%{transform:translateX(0)}
-25%{transform:translateX(-5px)}
-50%{transform:translateX(5px)}
-75%{transform:translateX(-5px)}
-}
-
-/* text */
-
-h1{
-color:#ff69b4;
-margin-bottom:20px;
-}
-
-p{
-color:#ff69b4;
-font-size:18px;
-margin-bottom:20px;
-}
-
-/* buttons */
-
-.buttons{
-display:flex;
-gap:20px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-button{
-background:linear-gradient(135deg,#ff69b4,#ffb6c1);
-color:white;
-border:none;
-padding:12px 28px;
-border-radius:50px;
-font-size:16px;
-cursor:pointer;
-transition:.3s;
-box-shadow:0 5px 12px rgba(255,105,180,.3);
-}
-
-button:hover{
-transform:translateY(-3px);
-}
-
-/* funny no button */
-
-#noBtn:hover{
-transform:translateX(60px);
-}
-
-/* confetti */
-
-.confetti{
-position:absolute;
-font-size:25px;
-animation:fall 3s linear infinite;
-}
-
-@keyframes fall{
-0%{
-transform:translateY(-100vh) rotate(0);
-opacity:1;
-}
-100%{
-transform:translateY(100vh) rotate(360deg);
-opacity:0;
-}
+.active{
+display:block;
 }
 
 </style>
+
 </head>
 
 <body>
+
+<div class="container">
 
 <!-- SCREEN 1 -->
 
 <div id="screen1" class="screen active">
 
-<div class="cat">🐱</div>
+<img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="cat">
 
-<h1>
-Himabindhu, I made something special for you ❤️
-<br>
-Do you want to see it?
-</h1>
+<h1 class="hey">HEY!!</h1>
 
-<div class="buttons">
-<button id="yesBtn">Yes</button>
-<button id="noBtn">No</button>
-</div>
+<p class="line1">I made something for you</p>
+
+<p class="line2">Do you want to see?</p>
+
+<button onclick="showScreen('screen2')">Yes</button>
+<button onclick="showScreen('screen3')">No</button>
 
 </div>
-
 
 <!-- SCREEN 2 -->
 
 <div id="screen2" class="screen">
 
-<div class="cat bounce">😸</div>
+<img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="cat">
 
-<h1>That's a good choice Himabindhu 😊</h1>
+<h1>Good choice 😸</h1>
 
-<button id="surpriseBtn">Click for your surprise</button>
+<p>Click below for your surprise</p>
+
+<button onclick="showScreen('screen4')">Click</button>
 
 </div>
-
 
 <!-- SCREEN 3 -->
 
 <div id="screen3" class="screen">
 
-<div class="cat shake">😾</div>
+<h1>How dare you say NO 😾</h1>
 
-<h1>Himabindhu! How dare you say NO 😾</h1>
-
-<button id="sorryBtn">Okay fine I'll click Yes</button>
+<button onclick="showScreen('screen2')">Okay fine I'll click Yes</button>
 
 </div>
-
 
 <!-- SCREEN 4 -->
 
 <div id="screen4" class="screen">
 
-<div class="cat">🐱🎂</div>
-
 <h1>🎉 Happy Birthday Himabindhu 🎉</h1>
 
 <p>
-Wishing you a day full of smiles, laughter and happiness.
-<br>
-You deserve the best birthday ever!
+Wishing you a day full of happiness and smiles ❤️
 </p>
 
 </div>
 
+</div>
 
 <script>
 
-const screens={
-screen1:document.getElementById("screen1"),
-screen2:document.getElementById("screen2"),
-screen3:document.getElementById("screen3"),
-screen4:document.getElementById("screen4")
-}
-
 function showScreen(id){
 
-Object.values(screens).forEach(screen=>{
-screen.classList.remove("active")
+document.querySelectorAll(".screen").forEach(s=>{
+s.classList.remove("active")
 })
 
-screens[id].classList.add("active")
-
-if(id==="screen4"){
-createConfetti()
-}
-
-}
-
-/* buttons */
-
-document.getElementById("yesBtn").onclick=()=>{
-showScreen("screen2")
-}
-
-document.getElementById("noBtn").onclick=()=>{
-showScreen("screen3")
-}
-
-document.getElementById("surpriseBtn").onclick=()=>{
-showScreen("screen4")
-}
-
-document.getElementById("sorryBtn").onclick=()=>{
-showScreen("screen2")
-}
-
-/* confetti */
-
-function createConfetti(){
-
-const emojis=["🎉","🎂","❤️","✨","🌟"]
-
-for(let i=0;i<40;i++){
-
-const c=document.createElement("div")
-
-c.className="confetti"
-
-c.textContent=emojis[Math.floor(Math.random()*emojis.length)]
-
-c.style.left=Math.random()*100+"vw"
-
-c.style.animationDelay=Math.random()*3+"s"
-
-document.body.appendChild(c)
-
-setTimeout(()=>{
-c.remove()
-},3000)
-
-}
+document.getElementById(id).classList.add("active")
 
 }
 
@@ -291,3 +167,4 @@ c.remove()
 
 </body>
 </html>
+```
