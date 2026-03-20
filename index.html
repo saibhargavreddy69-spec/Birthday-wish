@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
-<title>Birthday Surprise</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise 🎉</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
@@ -17,315 +17,257 @@ overflow:hidden;
 }
 
 /* screens */
-
 .screen{
 display:none;
-height:100vh;
+min-height:100vh;
+position:relative;
 justify-content:center;
 align-items:center;
 flex-direction:column;
 text-align:center;
+padding:20px;
 }
 
-.active{
-display:flex;
-}
-
-/* titles */
+.active{display:flex;}
 
 h1{
 font-family:'Pacifico',cursive;
-font-size:46px;
 color:#ff2e83;
 }
 
-/* buttons */
+/* images */
+.page-img{
+width:300px;
+margin-bottom:15px;
+border-radius:15px;
+}
 
+/* buttons */
 button{
-padding:12px 28px;
-font-size:18px;
+padding:12px 25px;
 border:none;
 border-radius:30px;
-background:linear-gradient(45deg,#ff5ca8,#ff2e83);
+background:#ff4fa0;
 color:white;
 cursor:pointer;
 margin:10px;
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
-transition:0.3s;
 }
 
-button:hover{
-transform:scale(1.1);
+/* LETTER LAYOUT */
+.letter-row{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:0;
+margin-top:40px;
 }
 
-/* cat */
-
-.cat{
-width:400px;
-border-radius:20px;
-margin-bottom:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.25);
+/* LEFT IMAGE */
+.letter-img{
+width:250px;
+display:none;
+border-radius:10px 0 0 10px;
 }
 
-/* birthday cat */
+/* LETTER */
+.letter{display:none;}
 
-.birthday-cat{
-width:240px;
-margin-bottom:20px;
+.letter-paper{
+background:white;
+padding:20px;
+width:250px;
+text-align:left;
+border-radius:0 10px 10px 0;
 }
 
-/* floating hearts */
-
-.heart{
-position:absolute;
-color:#ff4fa0;
-animation:float 20s linear infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(100vh)}
-100%{transform:translateY(-10vh)}
-}
-
-/* confetti */
-
-.confetti{
-position:absolute;
-width:8px;
-height:8px;
-animation:fall 4s linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateY(-10vh)}
-100%{transform:translateY(100vh)}
-}
-
-/* LETTER PAGE */
-
-.letter-page{
-background:linear-gradient(135deg,#ffd6ec,#ffc0d6);
-position:relative;
-}
-
-/* title on right */
-
-.letter-title{
-position:absolute;
-top:40px;
-right:40px;
-font-size:40px;
-}
-
-/* envelope */
-
+/* ENVELOPE */
 .envelope{
-position:relative;
-width:380px;
-height:210px;
+width:260px;
+height:180px;
+perspective:1000px;
 cursor:pointer;
 }
 
-.envelope-body{
-background:#f8a7c4;
+.envelope-inner{
 width:100%;
 height:100%;
-border-radius:12px;
-box-shadow:0 10px 20px rgba(0,0,0,0.25);
-}
-
-/* letter */
-
-.letter{
-position:absolute;
-bottom:-200px;
-left:30px;
-width:320px;
-transition:0.7s;
-}
-
-.envelope.open .letter{
-bottom:40px;
-}
-
-/* paper */
-
-.letter-paper{
-background:#ffffff;
-padding:22px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-font-family:'Poppins',sans-serif;
-font-size:17px;
-line-height:1.6;
-text-align:left;
 position:relative;
+transform-style:preserve-3d;
+transition:transform 0.8s ease;
 }
 
-/* side image */
+.envelope.flip .envelope-inner{
+transform:rotateY(180deg);
+}
 
-.side-image{
+.front,.back{
 position:absolute;
-left:-250px;
-top:40px;
-width:300px;
-border-radius:200px;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:10px;
+backface-visibility:hidden;
+font-size:28px;
 }
+
+.front{background:#ffb6c1;}
+.back{
+background:#ff4fa0;
+color:white;
+transform:rotateY(180deg);
+}
+
+/* GLOW */
+#glowEffect{
+position:absolute;
+width:250px;
+height:250px;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+background:radial-gradient(circle, white 0%, hotpink 40%, transparent 70%);
+border-radius:50%;
+opacity:0;
+pointer-events:none;
+}
+
+.glow-active{
+animation:glow 0.8s ease forwards;
+}
+
+@keyframes glow{
+0%{transform:translate(-50%,-50%) scale(0);opacity:1;}
+50%{transform:translate(-50%,-50%) scale(2);opacity:1;}
+100%{transform:translate(-50%,-50%) scale(3.5);opacity:0;}
+}
+
+/* GIFT */
+.gift-grid{
+display:grid;
+grid-template-columns:repeat(2,120px);
+gap:25px;
+margin-top:20px;
+}
+
+.gift-box{
+font-size:60px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.gift-box:hover{transform:scale(1.2);}
 
 </style>
-
 </head>
 
 <body>
 
-<!-- PAGE 1 -->
-
+<!-- SCREEN 1 -->
 <div id="screen1" class="screen active">
-
-<img src="cat.png" class="cat">
-
-<h1>Hey</h1>
-
-<p>I made something for you</p>
-<p>Do you want to see it?</p>
-
+<img src="image1.png" class="page-img">
+<h1>Hey 👋</h1>
+<p>I made something for u !!</p>
 <button onclick="showScreen('screen2')">Yes</button>
 <button onclick="showScreen('screen3')">No</button>
-
 </div>
 
-<!-- PAGE 2 -->
-
+<!-- YES -->
 <div id="screen2" class="screen">
-
-<h1>Thats My Good Girl 😌</h1>
-
-<p>Let's see what I made for you!</p>
-
+<img src="image2.png" class="page-img">
+<h1>good girl 😄</h1>
 <button onclick="showScreen('screen4')">Next</button>
-
 </div>
 
-<!-- NO PAGE -->
-
+<!-- NO -->
 <div id="screen3" class="screen">
-
-<img src="no.png" width="320">
-
-<h1>No?? 😤</h1>
-
-<p>You still have to see it, think again 😊</p>
-
+<img src="image3.png" class="page-img">
+<h1>Endhuku No ?? 😤</h1>
+<p>Inko chance 🤗</p>
 <button onclick="showScreen('screen1')">Go Back</button>
-
 </div>
 
-<!-- BIRTHDAY PAGE -->
-
+<!-- BIRTHDAY -->
 <div id="screen4" class="screen">
-
-<img src="cat2.png" class="birthday-cat">
-
-<h1>🎂 Happy Birthday PB 🎂</h1>
-
-<p>You are my favourite notification 💌</p>
-
-<button onclick="showScreen('screen5')">Open My Letter</button>
-
+<img src="image4.png" class="page-img">
+<h1>🎂 Happy Birthday Manchuchuka 🎂</h1>
+<button onclick="showScreen('screen5')">Open Letter</button>
 </div>
 
-<!-- LETTER PAGE -->
+<!-- LETTER -->
+<div id="screen5" class="screen">
 
-<div id="screen5" class="screen letter-page">
+<h1>💌 A Letter For You</h1>
 
-<h1 class="letter-title"> A Letter For You 🤗</h1>
+<div id="glowEffect"></div>
 
-<div class="envelope" onclick="openLetter()">
+<div class="letter-row">
 
-<div class="envelope-body"></div>
+<img src="image5.png" id="letterImage" class="letter-img">
 
-<div class="letter">
+<div class="envelope" id="envelopeBox" onclick="openLetter()">
+<div class="envelope-inner">
+<div class="front">💌</div>
+<div class="back">✨</div>
+</div>
+</div>
 
+<div class="letter" id="letterContent">
 <div class="letter-paper">
-
-<img src="image1.png" class="side-image">
-
-You are one of my favourite persons.<br><br>
-
-You always support me and encourage me.<br><br>
-
-You are very talented — especially in saying bye very quickly 😄.<br><br>
-
-Sometimes you get cute angry, but honestly that is a little dangerous to handle.<br><br>
-
-But that is what makes you special.<br><br>
-
-Stay happy and keep smiling ❤️
-
+You are my favourite persons.<br><br>
+You always support me and encourage .<br><br>
+You are very talented especially in saying bye very quickly to me 😁<br><br>
+some times you get cute angry,but honestly that is the a little dengerous to handle 😅<br><br>
+Stay happy always ❤️
+</div>
 </div>
 
 </div>
 
-</div>
+<button onclick="showScreen('giftPage')">🎁 Gift</button>
 
 </div>
+
+<!-- GIFT PAGE -->
+<div id="giftPage" class="screen">
+<h1>🎁 Choose Your Gift</h1>
+
+<div class="gift-grid">
+<div class="gift-box" onclick="showScreen('g1')">🎁</div>
+<div class="gift-box" onclick="showScreen('g2')">🎁</div>
+<div class="gift-box" onclick="showScreen('g3')">🎁</div>
+<div class="gift-box" onclick="showScreen('g4')">🎁</div>
+</div>
+
+<button onclick="showScreen('screen5')">Back</button>
+</div>
+
+<!-- GIFTS -->
+<div id="g1" class="screen"><h1>💖</h1><p>You are my happiness</p><button onclick="showScreen('giftPage')">Back</button></div>
+<div id="g2" class="screen"><h1>🌸</h1><p>You make everything better</p><button onclick="showScreen('giftPage')">Back</button></div>
+<div id="g3" class="screen"><h1>✨</h1><p>You are special</p><button onclick="showScreen('giftPage')">Back</button></div>
+<div id="g4" class="screen"><h1>❤️</h1><p>Stay happy always</p><button onclick="showScreen('giftPage')">Back</button></div>
 
 <script>
 
 function showScreen(id){
-
-document.querySelectorAll(".screen").forEach(s=>{
-s.classList.remove("active")
-})
-
-document.getElementById(id).classList.add("active")
-
-if(id==="screen4"){
-startConfetti()
-}
-
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
 }
 
 function openLetter(){
-document.querySelector(".envelope").classList.toggle("open")
-}
+const envelope=document.getElementById('envelopeBox');
+const glow=document.getElementById('glowEffect');
 
-/* floating hearts */
+glow.classList.add('glow-active');
+envelope.classList.add('flip');
 
-function createHeart(){
-
-let heart=document.createElement("div")
-heart.className="heart"
-heart.innerHTML="❤"
-
-heart.style.left=Math.random()*100+"vw"
-heart.style.fontSize=(Math.random()*20+15)+"px"
-
-document.body.appendChild(heart)
-
-setTimeout(()=>heart.remove(),6000)
-
-}
-
-setInterval(createHeart,500)
-
-/* confetti */
-
-function startConfetti(){
-
-for(let i=0;i<80;i++){
-
-let c=document.createElement("div")
-c.className="confetti"
-
-c.style.left=Math.random()*100+"vw"
-c.style.background=`hsl(${Math.random()*360},100%,60%)`
-c.style.animationDuration=(Math.random()*3+2)+"s"
-
-document.body.appendChild(c)
-
-}
-
+setTimeout(()=>{
+document.getElementById('letterContent').style.display='block';
+document.getElementById('letterImage').style.display='block';
+envelope.style.display='none';
+},800);
 }
 
 </script>
