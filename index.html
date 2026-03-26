@@ -560,6 +560,56 @@ body{
   overflow-x:hidden;
 }
 
+.countdown-container {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.time-box {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 60px;
+  box-shadow: 0 4px 10px rgba(255, 46, 131, 0.2);
+}
+
+.time-box span {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff2e83;
+}
+
+.time-label {
+  font-size: 12px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.time-box {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.heart {
+  position: absolute;
+  color: #ff4fa0;
+  font-size: 20px;
+  user-select: none;
+  pointer-events: none;
+  animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
 
 </style>
 </head>
@@ -571,8 +621,18 @@ body{
 <img src="image1.png" class="page-img">
 <h1>Oyee 👋</h1>
 <p>I made something for u !!</p>
-<button onclick="showScreen('screen2')">Yes</button>
-<button onclick="showScreen('screen3')">No</button>
+
+<div class="countdown-container" id="timer">
+  <div class="time-box"><span id="days">00</span><div class="time-label">Days</div></div>
+  <div class="time-box"><span id="hours">00</span><div class="time-label">Hrs</div></div>
+  <div class="time-box"><span id="mins">00</span><div class="time-label">Mins</div></div>
+  <div class="time-box"><span id="secs">00</span><div class="time-label">Secs</div></div>
+</div>
+
+<div id="actionButtons">
+    <button onclick="showScreen('screen2')">Yes</button>
+    <button onclick="showScreen('screen3')">No</button>
+</div>
 </div>
 
 <!-- YES -->
@@ -706,8 +766,20 @@ body{
 
 </div>
 
+<div id="g4" class="screen">
+    <h1>🐶 Surprise !!</h1>
+    
+    <div class="slider">
+        <p style="font-size: 18px; margin-top: 15px; padding: 0 20px;">
+            Happy birthday bindhu !! 🎂 <br><br>
+            Ayoo .. apude  20 ha? 😂 <br>
+            Always stay like this only, don't change. <br>
+            Party eppudu mari? 🏃‍♂️💨
+        </p>
+    </div>
 
-<div id="g4" class="screen"><h1>❤️</h1><p>Stay happy always</p><button onclick="showScreen('giftPage')">Back</button></div>
+    <button onclick="showScreen('giftPage')">Back</button>
+</div>
 
 <script>
 
@@ -746,7 +818,7 @@ text: "💕"
 },
 {
 img: "photo3.jpg",
-text: "😂"
+text: "🌹"
 }
 ];
 
@@ -829,7 +901,7 @@ You are very talented in saying bye and no to me  😄
 Sometimes you get cute angry 😅, but honestly it is little dangerous to handle 
 but I like that side of you too 😁
 
-Stay happy always, Keep the smile i like it 💕`;
+Stay happy always, i like your smile 💕`;
 
 let i = 0;
 
@@ -843,6 +915,43 @@ setTimeout(typeLetter, 40); // typing speed
 }
 }
 
+// Target: Tomorrow (March 27, 2026)
+const birthdayDate = new Date("2026-03-27T00:00:00").getTime();
+
+const timerInterval = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = birthdayDate - now;
+
+  // If the countdown is finished or it is already the 27th
+  if (distance < 0) {
+    clearInterval(timerInterval);
+    document.getElementById("timer").innerHTML = "<h3 style='color:#ff2e83; margin: 20px 0;'>✨ THE WAIT IS OVER! ✨</h3>";
+    return;
+  }
+
+  // Time calculations
+  const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Update display
+  document.getElementById("days").innerHTML = d.toString().padStart(2, '0');
+  document.getElementById("hours").innerHTML = h.toString().padStart(2, '0');
+  document.getElementById("mins").innerHTML = m.toString().padStart(2, '0');
+  document.getElementById("secs").innerHTML = s.toString().padStart(2, '0');
+}, 1000);
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML = '❤️';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 4000);
+}
+setInterval(createHeart, 800); // Creates a heart every 0.8 seconds
 </script>
 
 </body>
